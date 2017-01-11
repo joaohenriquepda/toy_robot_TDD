@@ -12,6 +12,26 @@ RSpec.describe ToyRobotTDD::Robot do
     end
   end
 
+  context "It hasn't been placed" do
+    it "refuse to move" do
+      expect{robot.move}.to raise_error ToyRobotTDD::NeedToBeInPlace
+      expect{robot.left}.to raise_error ToyRobotTDD::NeedToBeInPlace
+      expect{robot.right}.to raise_error ToyRobotTDD::NeedToBeInPlace
+    end
+  end
+
+  context "It is place" do
+    before "" do
+        robot.place 0,0,:north
+    end
+
+    it "Allow to move" do
+      expect{robot.move}.to_not raise_error
+      expect{robot.left}.to_not raise_error
+      expect{robot.right}.to_not raise_error
+    end
+  end
+
   describe "#move" do
     it "Moves robot one unit in the direction it is facing to north " do
       robot.place 0,0,:north
