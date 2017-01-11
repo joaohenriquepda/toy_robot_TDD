@@ -55,6 +55,28 @@ RSpec.describe ToyRobotTDD::Robot do
     end
   end
 
+  describe "#left" do
+    it "when facing to NORTH" do
+      robot.place 0, 0, :north
+      robot.left
+      expect(robot.report).to eq "0,0,WEST"
+    end
+    it "when facing to WEST" do
+      robot.place 0, 0, :west
+      robot.left
+      expect(robot.report).to eq "0,0,SOUTH"
+    end
+    it "when facing to SOUTH" do
+      robot.place 0, 0, :south
+      robot.left
+      expect(robot.report).to eq "0,0,EAST"
+    end
+    it "when facing to EAST" do
+      robot.place 0, 0, :east
+      robot.left
+      expect(robot.report).to eq "0,0,NORTH"
+    end
+  end
 
 
 end
