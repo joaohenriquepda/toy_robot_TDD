@@ -79,7 +79,7 @@ RSpec.describe ToyRobotTDD::Robot do
   end
 
 
-  describe "#left" do
+  describe "#right" do
     it "when facing to NORTH" do
       robot.place 0, 0, :north
       robot.right

@@ -28,7 +28,7 @@ module ToyRobotTDD
     def place(x,y,facing)
       @x = x
       @y = y
-      @facing = facing
+      @facing = ToyRobotTDD::Directions[facing]
       @placed = true
     end
 
@@ -39,36 +39,21 @@ module ToyRobotTDD
 
     def left
       raise NeedToBeInPlace.new unless @placed
-      if  @facing == :north
-        @facing = :west
-      elsif @facing ==:west
-        @facing = :south
-      elsif @facing ==:south
-        @facing = :east
-      elsif @facing == :east
-        @facing = :north
-      end
+      @facing = @facing.left
     end
 
     def right
       raise NeedToBeInPlace.new unless @placed
-
-      if @facing == :north
-        @facing = :east
-      elsif @facing == :east
-        @facing = :south
-      elsif @facing == :south
-        @facing = :west
-      elsif @facing == :west
-        @facing = :north
-      end
+      @facing = @facing.right
     end
 
     def move
       raise NeedToBeInPlace.new unless @placed
+
       if @facing == :north
         @y += 1
       elsif @facing == :east
+        puts "Aqui"
         @x += 1
       elsif @facing == :south
         @y -= 1
