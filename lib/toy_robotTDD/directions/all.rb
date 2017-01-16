@@ -1,22 +1,15 @@
+require "singleton"
+
 module ToyRobotTDD
   module Directions
 
-    def self.[](direction_name)
-      @directions = {
-        north: North.new,
-        west: West.new,
-        south: South.new,
-        east: East.new
-      }[direction_name]
-    end
-
-
     class North
+      include Singleton
       def left
-        West.new
+        West.instance
       end
       def right
-        East.new
+        East.instance
       end
 
       def to_s
@@ -29,11 +22,12 @@ module ToyRobotTDD
     end
 
     class West
+      include Singleton
       def left
-        South.new
+        South.instance
       end
       def right
-        North.new
+        North.instance
       end
       def to_s
         "WEST"
@@ -42,16 +36,15 @@ module ToyRobotTDD
       def ==(other)
         other == :west || other.is_a?(self.class)
       end
-
-
     end
 
     class East
+      include Singleton
       def left
-        North.new
+        North.instance
       end
       def right
-        South.new
+        South.instance
       end
       def to_s
         "EAST"
@@ -64,11 +57,12 @@ module ToyRobotTDD
     end
 
     class South
+      include Singleton
       def left
-        East.new
+        East.instance
       end
       def right
-        West.new
+        West.instance
       end
       def to_s
         "SOUTH"
@@ -76,9 +70,6 @@ module ToyRobotTDD
       def ==(other)
         other == :south || other.is_a?(self.class)
       end
-
     end
-
-
   end
 end
